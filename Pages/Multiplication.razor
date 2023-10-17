@@ -4,24 +4,25 @@
 
 <h1>Multiplication</h1>
 
-<p role="status">@multiplicand * @multiplier = @product</p>
+<p role="status">@multiplicand * @multiplier = </p>
+<p role="status">@product</p>
 
 <button class="btn btn-primary" @onclick="UpdateEquation">Multiplication Problem</button>
+<button class="btn btn-primary" @onclick="Answer">Show Answer</button>
 
 @code {
-    private int currentCount = 0;
     private int multiplicand, multiplier, product;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
 
     private void UpdateEquation()
     {
         Random rand = new Random();
-        multiplicand = rand.Next(101);
-        multiplier = rand.Next(101);
+        multiplicand = rand.Next(13);
+        multiplier = rand.Next(13);
+        product = 0;
+    }
+
+    private void Answer()
+    {
         product = multiplicand * multiplier;
     }
 }

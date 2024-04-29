@@ -1,0 +1,29 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  SOLUTION_FILE: blazor-apps.sln # name of solution file
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ DOTNET_VERSION }}
+    - name: Restore dependencies
+      run: dotnet restore ${{ SOLUTION_FILE }}
+    - name: Build
+      run: dotnet build ${{ SOLUTION_FILE }} --no-restore
+    - name: Test
+      run: dotnet test ${{ SOLUTION_FILE }} --no-build --verbosity normal

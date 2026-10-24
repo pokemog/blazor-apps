@@ -44,7 +44,7 @@ jobs:
 
       # Deploy to Azure Web apps
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: ${{ env.AZURE_WEBAPP_NAME }}
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp
